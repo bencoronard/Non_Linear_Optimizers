@@ -17,10 +17,10 @@ def newton_search(
 
     return x
 
-def cyclic_search(
+def hooke_search(
         obj_func, x0,
         tol=1e-6, max_iter=100):
-  
+
     dimension = len(x0)
     direction = np.eye(dimension)
     x = x0
@@ -33,7 +33,13 @@ def cyclic_search(
             x_i = x_i + step*direction[i]
         x_prev = x
         x = x_i
+        descend = x - x_prev
+        step = newton_search(lambda t: obj_func(x_i + t*descend), 0.0)
+        x_i = x + step*descend
+        x_prev = x
+        x = x_i
         delta = np.amax(abs(x - x_prev))
         k += 1
-        
+
     return x
+    
