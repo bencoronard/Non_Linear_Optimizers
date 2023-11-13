@@ -7,7 +7,7 @@ def newton_search(
     f_x = grad(obj_func)
     f_xx = grad(f_x)
     x = x0
-    dx = tol+1
+    dx = tol + 1
     k = 0
     while abs(dx) > tol and k < max_iter:
         dx = -f_x(x)/f_xx(x)

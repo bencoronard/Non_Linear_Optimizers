@@ -8,7 +8,7 @@ def newton_search(
     f_x = grad(obj_func)
     f_xx = grad(f_x)
     x = x0
-    dx = tol+1
+    dx = tol + 1
     k = 0
     while abs(dx) > tol and k < max_iter:
         dx = -f_x(x)/f_xx(x)
@@ -29,7 +29,7 @@ def cyclic_search(
     k = 0
     while delta > tol and k <= max_iter:
         for i in np.arange(dimension):
-            step = newton_search(lambda t: obj_func(x_i + t*direction[i]), 0.0)
+            step = newton_search(lambda t: obj_func(x_i + t*direction[i]),0.0)
             x_i = x_i + step*direction[i]
         x_prev = x
         x = x_i

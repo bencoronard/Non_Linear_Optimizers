@@ -26,7 +26,7 @@ def quadratic_fit_search(
     k = 1
     while x3 - x1 > tol and k < max_iter:
         A = np.array([[x1**2,x1,1], [x2**2,x2,1], [x3**2,x3,1]])
-        b = np.array([obj_func(x1),obj_func(x2),obj_func(x3)])
+        b = np.array([obj_func(x1), obj_func(x2), obj_func(x3)])
         x = np.linalg.solve(A,b)
         xb = -x[1]/(2*x[0])
         if xb == x2:

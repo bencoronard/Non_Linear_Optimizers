@@ -27,4 +27,4 @@ def bisection_search(
             k = n
         k += 1
 
-    return (xL+xR)/2
+    return (xL + xR)/2

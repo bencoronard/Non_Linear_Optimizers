@@ -31,4 +31,3 @@ def hooke_disc_search(
         k += 1
 
     return x
-    

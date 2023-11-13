@@ -29,12 +29,12 @@ def hooke_search(
     k = 0
     while delta > tol and k <= max_iter:
         for i in np.arange(dimension):
-            step = newton_search(lambda t: obj_func(x_i + t*direction[i]), 0.0)
+            step = newton_search(lambda t: obj_func(x_i + t*direction[i]),0.0)
             x_i = x_i + step*direction[i]
         x_prev = x
         x = x_i
         descend = x - x_prev
-        step = newton_search(lambda t: obj_func(x_i + t*descend), 0.0)
+        step = newton_search(lambda t: obj_func(x_i + t*descend),0.0)
         x_i = x + step*descend
         x_prev = x
         x = x_i
@@ -42,4 +42,3 @@ def hooke_search(
         k += 1
 
     return x
-    
