@@ -1,0 +1,167 @@
+spring:
+  application:
+    name: "${PORTAL_SERVICE_SCHEDULER_ID:SCHEDULER}"
+
+  profiles:
+    active: "${PORTAL_SERVICE_ENVIRONMENT:dev}"
+
+  threads:
+    virtual:
+      enabled: true
+  
+  sql:
+    init:
+      mode: "never"
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: "validate"
+    # hibernate:
+    #   ddl-auto: "create"
+
+  datasource:
+    url: "jdbc:postgresql://${PORTAL_DATABASE_POSTGRES_HOST}:${PORTAL_DATABASE_POSTGRES_PORT}/${PORTAL_DATABASE_POSTGRES_DB}"
+    driver-class-name: "org.postgresql.Driver"
+    username: "${PORTAL_DATABASE_POSTGRES_USER}"
+    password: "${PORTAL_DATABASE_POSTGRES_PASSWORD}"
+
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+
+  quartz:
+    job-store-type: "jdbc"
+    jdbc:
+      initialize-schema: "never"
+    properties:
+      org:
+        quartz:
+          threadPool:
+            threadCount: "${APP_QUARTZ_CONCURRENCY:10}"
+          jobStore:
+            driverDelegateClass: "org.quartz.impl.jdbcjobstore.PostgreSQLDelegate"
+            tablePrefix: "scheduler.QRTZ_"
+            misfireThreshold: "${APP_QUARTZ_MISFIRE_THRESHOLD:300000}"
+
+server:
+  port: "${APP_SERVER_PORT:8080}"
+  error:
+    whitelabel:
+      enabled: false
+
+info:
+  http:
+    client:
+      timeout-in-sec: "${APP_HTTP_CLIENT_TIMEOUT:3}"
+      pool-size: "${APP_HTTP_CLIENT_POOL_SIZE:10}"
+      max-conn-per-route: "${APP_HTTP_CLIENT_ROUTE_SIZE:5}"
+  api:
+    internal:
+      service-id: "${PORTAL_SERVICE_SCHEDULER_ID}"
+      secret-key: "${PORTAL_SERVICE_SCHEDULER_SECRET_KEY:888}"
+
+logging:
+  level:
+    root: info
+  include-application-name: true
+  include-application-group: true
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        exclude: "*"
+    web:
+      exposure:
+        include: "*"
+    access:
+      default: "NONE"
+  endpoint:
+    health:
+      access: "READ_ONLY"
+      cache:
+        time-to-live: "5s"
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+
+registry:
+  services:
+    - serviceId: "${PORTAL_SERVICE_NOTIFICATION_ID}"
+      baseUrl: "${PORTAL_SERVICE_NOTIFICATION_BASE_URL}"
+      secretKey: "${PORTAL_SERVICE_NOTIFICATION_SECRET_KEY}"
+    - serviceId: "${PORTAL_SERVICE_CONSENT_ID}"
+      baseUrl: "${PORTAL_SERVICE_CONSENT_BASE_URL}"
+      secretKey: "${PORTAL_SERVICE_CONSENT_SECRET_KEY}"
+    - serviceId: "${PORTAL_SERVICE_INSURANCE_ID}"
+      baseUrl: "${PORTAL_SERVICE_INSURANCE_BASE_URL}"
+      secretKey: "${PORTAL_SERVICE_INSURANCE_SECRET_KEY}"
+
+---
+# Environment: dev
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+
+  # jpa:
+  #   show-sql: true
+
+info:
+  app:
+    environment: "dev"
+
+management:
+  endpoint:
+    info:
+      access: "READ_ONLY"
+
+---
+# Environment: sit
+spring:
+  config:
+    activate:
+      on-profile: "sit"
+
+info:
+  app:
+    environment: "sit"
+
+---
+# Environment: uat
+spring:
+  config:
+    activate:
+      on-profile: "uat"
+
+info:
+  app:
+    environment: "uat"
+
+---
+# Environment: prod
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+  quartz:
+    properties:
+      org:
+        quartz:
+          jobStore:
+            isClustered: true
+            clusterCheckinInterval: 20000
+          scheduler:
+            instanceName: "qrtz-gateway-job-executor"
+            instanceId: "AUTO"
+
+info:
+  app:
+    environment: "prod"
