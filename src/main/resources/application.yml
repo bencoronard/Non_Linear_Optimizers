@@ -17,8 +17,6 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: "validate"
-    # hibernate:
-    #   ddl-auto: "create"
 
   datasource:
     url: "jdbc:postgresql://${PORTAL_DATABASE_POSTGRES_HOST}:${PORTAL_DATABASE_POSTGRES_PORT}/${PORTAL_DATABASE_POSTGRES_DB}"
