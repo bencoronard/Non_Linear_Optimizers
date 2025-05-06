@@ -1,0 +1,19 @@
+package dev.hireben.demo.rest.scheduler.domain.model;
+
+import java.util.Map;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class Webhook {
+
+  // ---------------------------------------------------------------------------//
+  // Fields
+  // ---------------------------------------------------------------------------//
+
+  private String callbackUrl;
+  private Map<String, String> headers;
+  private byte[] payload;
+}
