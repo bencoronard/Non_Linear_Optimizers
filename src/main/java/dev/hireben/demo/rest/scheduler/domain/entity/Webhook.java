@@ -1,4 +1,4 @@
-package dev.hireben.demo.rest.scheduler.domain.model;
+package dev.hireben.demo.rest.scheduler.domain.entity;
 
 import java.util.Map;
 

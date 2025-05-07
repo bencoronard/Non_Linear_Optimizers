@@ -1,6 +1,6 @@
 package dev.hireben.demo.rest.scheduler.domain.service;
 
-import dev.hireben.demo.rest.scheduler.domain.model.Webhook;
+import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
 
 public interface DispatchService {
 

@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class JobExecutionRecord {
+public class JobExecRecord {
 
   // ---------------------------------------------------------------------------//
   // Fields
