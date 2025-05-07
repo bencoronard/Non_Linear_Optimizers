@@ -16,6 +16,6 @@ public class JobExecutionRecord {
   private final Long id;
   private final Long jobId;
   private final Instant executedAt;
-  private final String executionResult;
+  private final String execResult;
 
 }

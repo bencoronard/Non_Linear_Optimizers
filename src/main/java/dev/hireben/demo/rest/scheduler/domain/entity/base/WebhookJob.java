@@ -44,7 +44,7 @@ public abstract class WebhookJob {
       JobExecutionRecord record = JobExecutionRecord.builder()
           .jobId(id)
           .executedAt(Instant.now())
-          .executionResult(result)
+          .execResult(result)
           .build();
 
       repository.save(record);
