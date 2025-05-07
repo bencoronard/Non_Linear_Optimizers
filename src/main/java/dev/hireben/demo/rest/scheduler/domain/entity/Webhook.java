@@ -13,7 +13,8 @@ public class Webhook {
   // Fields
   // ---------------------------------------------------------------------------//
 
+  private Long id;
   private String callbackUrl;
   private Map<String, String> headers;
-  private byte[] payload;
+  private byte[] payload; // nullable
 }
