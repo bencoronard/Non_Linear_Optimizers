@@ -1,11 +1,7 @@
 package dev.hireben.demo.rest.scheduler.domain.repository;
 
-import java.util.Collection;
-
 import dev.hireben.demo.rest.scheduler.domain.entity.OneTimeJob;
+import dev.hireben.demo.rest.scheduler.domain.repository.base.JobRepository;
 
-public interface OneTimeJobRepository {
-
-  Collection<Long> saveAll(Collection<OneTimeJob> jobs);
-
+public interface OneTimeJobRepository extends JobRepository<OneTimeJob> {
 }

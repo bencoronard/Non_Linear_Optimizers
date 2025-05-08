@@ -1,11 +1,7 @@
 package dev.hireben.demo.rest.scheduler.domain.repository;
 
-import java.util.Collection;
-
 import dev.hireben.demo.rest.scheduler.domain.entity.RecurringJob;
+import dev.hireben.demo.rest.scheduler.domain.repository.base.JobRepository;
 
-public interface RecurringJobRepository {
-
-  Collection<Long> saveAll(Collection<RecurringJob> jobs);
-
+public interface RecurringJobRepository extends JobRepository<RecurringJob> {
 }
