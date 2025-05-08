@@ -38,7 +38,7 @@ public abstract class WebhookJobEntity {
   private String groupId;
 
   @Column(name = "created_by", updatable = false, nullable = false)
-  private String created_by;
+  private String createdBy;
 
   @Column(name = "created_at", updatable = false, nullable = false)
   private Instant createdAt;
