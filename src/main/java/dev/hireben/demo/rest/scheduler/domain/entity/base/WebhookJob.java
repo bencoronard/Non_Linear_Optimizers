@@ -5,7 +5,7 @@ import java.time.Instant;
 import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
 import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
-import dev.hireben.demo.rest.scheduler.domain.repository.base.JobRepository;
+import dev.hireben.demo.rest.scheduler.domain.repository.base.WebhookJobRepository;
 import dev.hireben.demo.rest.scheduler.domain.service.DispatchService;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
@@ -31,7 +31,7 @@ public abstract class WebhookJob {
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public void execute(DispatchService dispatcher, JobRepository<? extends WebhookJob> jobRepository,
+  public void execute(DispatchService dispatcher, WebhookJobRepository<? extends WebhookJob> jobRepository,
       JobExecRecordRepository recordRepository) {
     String result = "CANCELLED";
 

@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.base.WebhookJob;
 
-public interface JobRepository<T extends WebhookJob> {
+public interface WebhookJobRepository<T extends WebhookJob> {
 
   Collection<Long> saveAll(Collection<T> entities);
+
+  Optional<T> findById(Long id);
 
   Optional<byte[]> retrievePayloadByJobId(Long id);
 

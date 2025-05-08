@@ -1,7 +1,7 @@
 package dev.hireben.demo.rest.scheduler.domain.repository;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.RecurringJob;
-import dev.hireben.demo.rest.scheduler.domain.repository.base.JobRepository;
+import dev.hireben.demo.rest.scheduler.domain.repository.base.WebhookJobRepository;
 
-public interface RecurringJobRepository extends JobRepository<RecurringJob> {
+public interface RecurringJobRepository extends WebhookJobRepository<RecurringJob> {
 }
