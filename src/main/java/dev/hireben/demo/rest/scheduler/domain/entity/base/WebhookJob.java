@@ -19,9 +19,9 @@ public abstract class WebhookJob {
   // ---------------------------------------------------------------------------//
 
   protected final Long id;
-  protected final String origin;
   protected final String refId;
   protected final String groupId;
+  protected final String createdBy;
   protected final Instant createdAt;
   protected final Boolean ignoreMisfire;
   protected Boolean isActive;
