@@ -40,7 +40,7 @@ public abstract class WebhookJob {
         return;
       }
 
-      webhook.setPayload(jobRepository.retrievePayloadByJobId(id));
+      jobRepository.retrievePayloadByJobId(id).ifPresent(payload -> webhook.setPayload(payload));
 
       result = dispatcher.dispatch(webhook);
     } catch (Exception e) {
