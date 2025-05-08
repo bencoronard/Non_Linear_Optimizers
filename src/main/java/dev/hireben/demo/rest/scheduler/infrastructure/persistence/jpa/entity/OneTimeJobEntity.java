@@ -19,7 +19,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "t_job_onetime", schema = "public")
+@Table(name = "m_job_onetime", schema = "public")
 public class OneTimeJobEntity extends WebhookJobEntity {
 
   // ---------------------------------------------------------------------------//

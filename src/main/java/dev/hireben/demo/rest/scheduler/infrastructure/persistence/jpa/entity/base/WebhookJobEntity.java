@@ -2,7 +2,8 @@ package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.ba
 
 import java.time.Instant;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,14 +31,14 @@ public abstract class WebhookJobEntity {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "origin", updatable = false, nullable = false)
-  private String origin;
-
   @Column(name = "reference_id", updatable = false, nullable = false)
   private String refId;
 
   @Column(name = "group_id", updatable = false, nullable = false)
   private String groupId;
+
+  @Column(name = "created_by", updatable = false, nullable = false)
+  private String created_by;
 
   @Column(name = "created_at", updatable = false, nullable = false)
   private Instant createdAt;
@@ -48,8 +49,11 @@ public abstract class WebhookJobEntity {
   @Column(name = "is_active", nullable = false)
   private Boolean isActive;
 
-  @OneToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name = "webhook_id", nullable = false)
-  private WebhookEntity webhook;
+  @Column(name = "callback_url", nullable = false)
+  private String callbackUrl;
+
+  @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+  @JoinColumn(name = "id")
+  private WebhookContentEntity webhookData;
 
 }
