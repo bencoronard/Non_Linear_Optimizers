@@ -31,7 +31,7 @@ public class JobExecRecordEntity {
   private Long id;
 
   @Column(name = "job_id", updatable = false, nullable = false)
-  private String jobId;
+  private Long jobId;
 
   @Column(name = "exec_at", updatable = false)
   private Instant executedAt;
