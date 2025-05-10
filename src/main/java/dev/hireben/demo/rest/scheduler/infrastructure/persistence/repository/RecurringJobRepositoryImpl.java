@@ -4,24 +4,24 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Repository;
 
-import dev.hireben.demo.rest.scheduler.domain.entity.OneTimeJob;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.OneTimeJobEntity;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.OneTimeJobEntityMapper;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.OneTimeJobJpaRepository;
+import dev.hireben.demo.rest.scheduler.domain.entity.RecurringJob;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.RecurringJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.RecurringJobEntityMapper;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.RecurringJobJpaRepository;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.WebhookContentJpaRepository;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.repository.WebhookJobQuartzRepository;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.repository.base.WebhookJobRepositoryImpl;
 
 @Repository
-public class OneTimeJobRepositoryImpl
-    extends WebhookJobRepositoryImpl<OneTimeJobEntity, OneTimeJob, OneTimeJobJpaRepository> {
+public class RecurringJobRepositoryImpl
+    extends WebhookJobRepositoryImpl<RecurringJobEntity, RecurringJob, RecurringJobJpaRepository> {
 
   // ---------------------------------------------------------------------------//
   // Constructors
   // ---------------------------------------------------------------------------//
 
-  protected OneTimeJobRepositoryImpl(WebhookJobQuartzRepository scheduler,
-      WebhookContentJpaRepository webhookRepository, OneTimeJobJpaRepository jobRepository) {
+  protected RecurringJobRepositoryImpl(WebhookJobQuartzRepository scheduler,
+      WebhookContentJpaRepository webhookRepository, RecurringJobJpaRepository jobRepository) {
     super(scheduler, webhookRepository, jobRepository);
   }
 
@@ -30,29 +30,29 @@ public class OneTimeJobRepositoryImpl
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected Long extractId(OneTimeJobEntity entity) {
+  protected Long extractId(RecurringJobEntity entity) {
     return entity.getId();
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected OneTimeJobEntity toEntity(OneTimeJob domain) {
-    return OneTimeJobEntityMapper.toEntity(domain);
+  protected RecurringJobEntity toEntity(RecurringJob domain) {
+    return RecurringJobEntityMapper.toEntity(domain);
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected OneTimeJob toDomain(OneTimeJobEntity entity, boolean includeContent) {
-    return OneTimeJobEntityMapper.toDomain(entity, includeContent);
+  protected RecurringJob toDomain(RecurringJobEntity entity, boolean includeContent) {
+    return RecurringJobEntityMapper.toDomain(entity, includeContent);
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected void scheduleJobs(Collection<OneTimeJobEntity> entities) {
-    scheduler.scheduleAllOneTimeJobs(entities);
+  protected void scheduleJobs(Collection<RecurringJobEntity> entities) {
+    scheduler.scheduleAllRecurringJobs(entities);
   }
 
 }
