@@ -11,6 +11,4 @@ public interface WebhookJobRepository<T extends WebhookJob> {
 
   Optional<T> findById(Long id);
 
-  Optional<byte[]> retrievePayloadByJobId(Long id);
-
 }

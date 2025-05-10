@@ -16,5 +16,5 @@ public class Webhook {
   private Long id;
   private String callbackUrl;
   private Map<String, String> headers;
-  private byte[] payload; // nullable
+  private byte[] payload;
 }

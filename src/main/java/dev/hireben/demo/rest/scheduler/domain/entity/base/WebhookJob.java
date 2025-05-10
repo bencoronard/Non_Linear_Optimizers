@@ -6,7 +6,7 @@ import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
 import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
 import dev.hireben.demo.rest.scheduler.domain.repository.base.WebhookJobRepository;
-import dev.hireben.demo.rest.scheduler.domain.service.DispatchService;
+import dev.hireben.demo.rest.scheduler.domain.service.WebhookDispatchService;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -18,20 +18,20 @@ public abstract class WebhookJob {
   // Fields
   // ---------------------------------------------------------------------------//
 
-  protected final Long id;
-  protected final String refId;
-  protected final String groupId;
-  protected final String createdBy;
-  protected final Instant createdAt;
-  protected final Boolean ignoreMisfire;
-  protected Boolean isActive;
-  protected Webhook webhook;
+  private final Long id;
+  private final String refId;
+  private final String groupId;
+  private final String createdBy;
+  private final Instant createdAt;
+  private final Boolean ignoreMisfire;
+  private Boolean isActive;
+  private Webhook webhook;
 
   // ---------------------------------------------------------------------------//
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public void execute(DispatchService dispatcher, WebhookJobRepository<? extends WebhookJob> jobRepository,
+  public void execute(WebhookDispatchService dispatcher, WebhookJobRepository<? extends WebhookJob> jobRepository,
       JobExecRecordRepository recordRepository) {
     String result = "CANCELLED";
 
@@ -39,9 +39,6 @@ public abstract class WebhookJob {
       if (!isActive) {
         return;
       }
-
-      jobRepository.retrievePayloadByJobId(id).ifPresent(payload -> webhook.setPayload(payload));
-
       result = dispatcher.dispatch(webhook);
     } catch (Exception e) {
       result = e.getMessage();
