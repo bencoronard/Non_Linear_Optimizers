@@ -1,8 +1,7 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.RecurringJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.base.WebhookJobJpaRepository;
 
-public interface RecurringJobJpaRepository extends JpaRepository<RecurringJobEntity, Long> {
+public interface RecurringJobJpaRepository extends WebhookJobJpaRepository<RecurringJobEntity, Long> {
 }

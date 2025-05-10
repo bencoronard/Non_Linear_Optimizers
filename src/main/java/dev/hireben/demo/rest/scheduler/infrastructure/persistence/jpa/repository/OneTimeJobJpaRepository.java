@@ -1,8 +1,7 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.OneTimeJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.base.WebhookJobJpaRepository;
 
-public interface OneTimeJobJpaRepository extends JpaRepository<OneTimeJobEntity, Long> {
+public interface OneTimeJobJpaRepository extends WebhookJobJpaRepository<OneTimeJobEntity, Long> {
 }
