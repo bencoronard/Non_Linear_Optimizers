@@ -1,4 +1,4 @@
-package dev.hireben.demo.rest.scheduler.infrastructure.persistence;
+package dev.hireben.demo.rest.scheduler.infrastructure.persistence.repository;
 
 import org.springframework.stereotype.Repository;
 
