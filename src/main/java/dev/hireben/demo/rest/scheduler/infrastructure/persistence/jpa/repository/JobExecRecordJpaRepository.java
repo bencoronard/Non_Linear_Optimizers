@@ -2,7 +2,7 @@ package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repositor
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.JobExecRecordEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.JobExecRecordJpaEntity;
 
-public interface JobExecRecordJpaRepository extends JpaRepository<JobExecRecordEntity, Long> {
+public interface JobExecRecordJpaRepository extends JpaRepository<JobExecRecordJpaEntity, Long> {
 }

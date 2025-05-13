@@ -1,6 +1,6 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobJpaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -18,7 +18,7 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = true)
 @Table(name = "m_job_recurring", schema = "public")
-public class RecurringJobEntity extends WebhookJobEntity {
+public class RecurringJobJpaEntity extends WebhookJobJpaEntity {
 
   // ---------------------------------------------------------------------------//
   // Fields

@@ -1,18 +1,18 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.JobExecRecordEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.JobExecRecordJpaEntity;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class JobExecRecordEntityMapper {
+public class JobExecRecordJpaMapper {
 
   // ---------------------------------------------------------------------------//
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public JobExecRecordEntity toEntity(JobExecRecord domain) {
-    return JobExecRecordEntity.builder()
+  public JobExecRecordJpaEntity toEntity(JobExecRecord domain) {
+    return JobExecRecordJpaEntity.builder()
         .id(domain.getId())
         .jobId(domain.getJobId())
         .executedAt(domain.getExecutedAt())
@@ -22,7 +22,7 @@ public class JobExecRecordEntityMapper {
 
   // ---------------------------------------------------------------------------//
 
-  public JobExecRecord toDomain(JobExecRecordEntity entity) {
+  public JobExecRecord toDomain(JobExecRecordJpaEntity entity) {
     return JobExecRecord.builder()
         .id(entity.getId())
         .jobId(entity.getJobId())

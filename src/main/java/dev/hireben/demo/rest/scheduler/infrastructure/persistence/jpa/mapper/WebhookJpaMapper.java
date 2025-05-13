@@ -1,19 +1,19 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentEntity;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentJpaEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobJpaEntity;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class WebhookEntityMapper {
+public class WebhookJpaMapper {
 
   // ---------------------------------------------------------------------------//
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public WebhookContentEntity toEntity(Webhook domain, WebhookJobEntity jobEntity) {
-    return WebhookContentEntity.builder()
+  public WebhookContentJpaEntity toEntity(Webhook domain, WebhookJobJpaEntity jobEntity) {
+    return WebhookContentJpaEntity.builder()
         .id(domain.getId())
         .webhookJob(jobEntity)
         .headers(domain.getHeaders())
@@ -23,7 +23,7 @@ public class WebhookEntityMapper {
 
   // ---------------------------------------------------------------------------//
 
-  public Webhook toDomain(WebhookContentEntity entity, boolean includeContent) {
+  public Webhook toDomain(WebhookContentJpaEntity entity, boolean includeContent) {
     return Webhook.builder()
         .id(entity.getId())
         .callbackUrl(entity.getWebhookJob().getCallbackUrl())

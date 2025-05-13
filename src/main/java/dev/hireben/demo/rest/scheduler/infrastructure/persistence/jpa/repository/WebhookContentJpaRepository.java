@@ -2,7 +2,7 @@ package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repositor
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentJpaEntity;
 
-public interface WebhookContentJpaRepository extends JpaRepository<WebhookContentEntity, Long> {
+public interface WebhookContentJpaRepository extends JpaRepository<WebhookContentJpaEntity, Long> {
 }

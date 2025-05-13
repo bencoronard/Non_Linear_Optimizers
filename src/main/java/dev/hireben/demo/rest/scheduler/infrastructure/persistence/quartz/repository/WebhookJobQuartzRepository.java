@@ -17,15 +17,16 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.springframework.stereotype.Repository;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.OneTimeJobEntity;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.RecurringJobEntity;
+import dev.hireben.demo.rest.scheduler.domain.entity.OneTimeJob;
+import dev.hireben.demo.rest.scheduler.domain.entity.RecurringJob;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.entity.OneTimeJobQuartzEntity;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.entity.RecurringJobQuartzEntity;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.utility.JobDataMapKey;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
 @Repository
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class WebhookJobQuartzRepository {
 
   // ---------------------------------------------------------------------------//
@@ -38,11 +39,11 @@ public class WebhookJobQuartzRepository {
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public void scheduleAllOneTimeJobs(Collection<OneTimeJobEntity> oneTimeJobs) {
+  public void scheduleAllOneTimeJobs(Collection<OneTimeJob> jobs) {
 
-    Map<JobDetail, Set<? extends Trigger>> jobs = new HashMap<>(oneTimeJobs.size());
+    Map<JobDetail, Set<? extends Trigger>> jobDataMap = new HashMap<>(jobs.size());
 
-    oneTimeJobs.forEach(job -> {
+    jobs.forEach(job -> {
       String refId = job.getRefId();
       String groupId = job.getGroupId();
 
@@ -65,11 +66,11 @@ public class WebhookJobQuartzRepository {
           .usingJobData(JobDataMapKey.JOB_ID_KEY, job.getId())
           .build();
 
-      jobs.put(detail, Collections.singleton(trigger));
+      jobDataMap.put(detail, Collections.singleton(trigger));
     });
 
     try {
-      scheduler.scheduleJobs(jobs, false);
+      scheduler.scheduleJobs(jobDataMap, false);
     } catch (Exception e) {
       throw new RuntimeException(e.getMessage());
     }
@@ -78,11 +79,11 @@ public class WebhookJobQuartzRepository {
 
   // ---------------------------------------------------------------------------//
 
-  public void scheduleAllRecurringJobs(Collection<RecurringJobEntity> recurringJobs) {
+  public void scheduleAllRecurringJobs(Collection<RecurringJob> jobs) {
 
-    Map<JobDetail, Set<? extends Trigger>> jobs = new HashMap<>(recurringJobs.size());
+    Map<JobDetail, Set<? extends Trigger>> jobDataMap = new HashMap<>(jobs.size());
 
-    recurringJobs.forEach(job -> {
+    jobs.forEach(job -> {
       String refId = job.getRefId();
       String groupId = job.getGroupId();
 
@@ -105,11 +106,11 @@ public class WebhookJobQuartzRepository {
           .usingJobData(JobDataMapKey.JOB_ID_KEY, job.getId())
           .build();
 
-      jobs.put(detail, Collections.singleton(trigger));
+      jobDataMap.put(detail, Collections.singleton(trigger));
     });
 
     try {
-      scheduler.scheduleJobs(jobs, false);
+      scheduler.scheduleJobs(jobDataMap, false);
     } catch (Exception e) {
       throw new RuntimeException(e.getMessage());
     }

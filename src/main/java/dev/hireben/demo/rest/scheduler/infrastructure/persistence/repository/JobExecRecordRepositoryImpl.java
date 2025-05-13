@@ -4,12 +4,13 @@ import org.springframework.stereotype.Repository;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.JobExecRecordEntityMapper;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.JobExecRecordJpaMapper;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.JobExecRecordJpaRepository;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
 @Repository
-@RequiredArgsConstructor
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class JobExecRecordRepositoryImpl implements JobExecRecordRepository {
 
   // ---------------------------------------------------------------------------//
@@ -24,7 +25,7 @@ public class JobExecRecordRepositoryImpl implements JobExecRecordRepository {
 
   @Override
   public void save(JobExecRecord record) {
-    repository.save(JobExecRecordEntityMapper.toEntity(record));
+    repository.save(JobExecRecordJpaMapper.toEntity(record));
   }
 
 }

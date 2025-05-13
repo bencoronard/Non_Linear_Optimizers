@@ -5,8 +5,8 @@ import java.util.Collection;
 import org.springframework.stereotype.Repository;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.OneTimeJob;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.OneTimeJobEntity;
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.OneTimeJobEntityMapper;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.OneTimeJobJpaEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.mapper.OneTimeJobJpaMapper;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.OneTimeJobJpaRepository;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.repository.WebhookContentJpaRepository;
 import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.repository.WebhookJobQuartzRepository;
@@ -14,7 +14,7 @@ import dev.hireben.demo.rest.scheduler.infrastructure.persistence.repository.bas
 
 @Repository
 public class OneTimeJobRepositoryImpl
-    extends WebhookJobRepositoryImpl<OneTimeJobEntity, OneTimeJob, OneTimeJobJpaRepository> {
+    extends WebhookJobRepositoryImpl<OneTimeJobJpaEntity, OneTimeJob, OneTimeJobJpaRepository> {
 
   // ---------------------------------------------------------------------------//
   // Constructors
@@ -30,29 +30,29 @@ public class OneTimeJobRepositoryImpl
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected Long extractId(OneTimeJobEntity entity) {
+  protected Long extractId(OneTimeJobJpaEntity entity) {
     return entity.getId();
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected OneTimeJobEntity toEntity(OneTimeJob domain) {
-    return OneTimeJobEntityMapper.toEntity(domain);
+  protected OneTimeJobJpaEntity toEntity(OneTimeJob domain) {
+    return OneTimeJobJpaMapper.toEntity(domain);
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected OneTimeJob toDomain(OneTimeJobEntity entity, boolean includeContent) {
-    return OneTimeJobEntityMapper.toDomain(entity, includeContent);
+  protected OneTimeJob toDomain(OneTimeJobJpaEntity entity, boolean includeContent) {
+    return OneTimeJobJpaMapper.toDomain(entity, includeContent);
   }
 
   // ---------------------------------------------------------------------------//
 
   @Override
-  protected void scheduleJobs(Collection<OneTimeJobEntity> entities) {
-    scheduler.scheduleAllOneTimeJobs(entities);
+  protected void scheduleJobs(Collection<OneTimeJob> jobs) {
+    scheduler.scheduleAllOneTimeJobs(jobs);
   }
 
 }

@@ -1,38 +1,24 @@
 package dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.entity;
 
-import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 import org.springframework.context.annotation.Scope;
-import org.springframework.lang.NonNull;
-import org.springframework.scheduling.quartz.QuartzJobBean;
 import org.springframework.stereotype.Component;
 
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
 import dev.hireben.demo.rest.scheduler.domain.repository.RecurringJobRepository;
-import dev.hireben.demo.rest.scheduler.domain.service.DispatchService;
-import lombok.RequiredArgsConstructor;
+import dev.hireben.demo.rest.scheduler.domain.service.WebhookDispatchService;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.quartz.entity.base.WebhookJobQuartzEntity;
 
 @Component
 @Scope("prototype")
-@RequiredArgsConstructor
-public class RecurringJobQuartzEntity extends QuartzJobBean {
+public class RecurringJobQuartzEntity extends WebhookJobQuartzEntity<RecurringJobRepository> {
 
   // ---------------------------------------------------------------------------//
-  // Fields
+  // Constructors
   // ---------------------------------------------------------------------------//
 
-  private final DispatchService dispatcher;
-  private final JobExecRecordRepository recordRepository;
-  private final RecurringJobRepository jobRepository;
-  private Long jobId;
-
-  // ---------------------------------------------------------------------------//
-  // Methods
-  // ---------------------------------------------------------------------------//
-
-  @Override
-  protected void executeInternal(@NonNull JobExecutionContext context) throws JobExecutionException {
-    jobRepository.findById(jobId).ifPresent(job -> job.execute(dispatcher, jobRepository, recordRepository));
+  protected RecurringJobQuartzEntity(WebhookDispatchService dispatcher, JobExecRecordRepository recordRepository,
+      RecurringJobRepository jobRepository) {
+    super(dispatcher, recordRepository, jobRepository);
   }
 
 }

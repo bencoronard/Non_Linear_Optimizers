@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "t_exec_hist", schema = "public")
-public class JobExecRecordEntity {
+public class JobExecRecordJpaEntity {
 
   // ---------------------------------------------------------------------------//
   // Fields

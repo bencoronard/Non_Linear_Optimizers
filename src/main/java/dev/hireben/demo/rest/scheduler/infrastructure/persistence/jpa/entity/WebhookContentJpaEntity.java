@@ -5,7 +5,7 @@ import java.util.Map;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.base.WebhookJobJpaEntity;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "m_webhook_content", schema = "public")
-public class WebhookContentEntity {
+public class WebhookContentJpaEntity {
 
   // ---------------------------------------------------------------------------//
   // Fields
@@ -40,7 +40,7 @@ public class WebhookContentEntity {
   @OneToOne(fetch = FetchType.LAZY)
   @MapsId
   @JoinColumn(name = "id")
-  private WebhookJobEntity webhookJob;
+  private WebhookJobJpaEntity webhookJob;
 
   @JdbcTypeCode(SqlTypes.JSON)
   @Column(name = "headers", columnDefinition = "JSON")

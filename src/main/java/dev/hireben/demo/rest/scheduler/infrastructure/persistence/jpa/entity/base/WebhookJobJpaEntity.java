@@ -2,7 +2,7 @@ package dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.ba
 
 import java.time.Instant;
 
-import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentEntity;
+import dev.hireben.demo.rest.scheduler.infrastructure.persistence.jpa.entity.WebhookContentJpaEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
@@ -21,7 +21,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @MappedSuperclass
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public abstract class WebhookJobEntity {
+public abstract class WebhookJobJpaEntity {
 
   // ---------------------------------------------------------------------------//
   // Fields
@@ -54,6 +54,6 @@ public abstract class WebhookJobEntity {
 
   @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
   @JoinColumn(name = "id")
-  private WebhookContentEntity webhookData;
+  private WebhookContentJpaEntity webhookData;
 
 }
