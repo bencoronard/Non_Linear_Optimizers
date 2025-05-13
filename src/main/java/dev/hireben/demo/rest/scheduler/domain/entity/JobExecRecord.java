@@ -3,9 +3,9 @@ package dev.hireben.demo.rest.scheduler.domain.entity;
 import java.time.Instant;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
-@Data
+@Value
 @Builder
 public class JobExecRecord {
 
@@ -13,9 +13,9 @@ public class JobExecRecord {
   // Fields
   // ---------------------------------------------------------------------------//
 
-  private final Long id;
-  private final Long jobId;
-  private final Instant executedAt;
-  private final String execResult;
+  Long id;
+  Long jobId;
+  Instant executedAt;
+  String execResult;
 
 }
