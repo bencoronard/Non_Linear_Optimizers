@@ -5,8 +5,8 @@ import java.time.Instant;
 import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
 import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
-import dev.hireben.demo.rest.scheduler.domain.repository.base.WebhookJobRepository;
 import dev.hireben.demo.rest.scheduler.domain.service.WebhookDispatchService;
+import dev.hireben.demo.rest.scheduler.domain.utility.JobExecStatus;
 import lombok.Data;
 import lombok.experimental.SuperBuilder;
 
@@ -31,27 +31,23 @@ public abstract class WebhookJob {
   // Methods
   // ---------------------------------------------------------------------------//
 
-  public void execute(WebhookDispatchService dispatcher, WebhookJobRepository<? extends WebhookJob> jobRepository,
-      JobExecRecordRepository recordRepository) {
-    String result = "CANCELLED";
+  public void execute(WebhookDispatchService dispatcher, JobExecRecordRepository recordRepository) {
+    Instant now = Instant.now();
+    String response;
 
-    try {
-      if (!isActive) {
-        return;
-      }
-      result = dispatcher.dispatch(webhook);
-    } catch (Exception e) {
-      result = e.getMessage();
-    } finally {
-      JobExecRecord record = JobExecRecord.builder()
-          .jobId(id)
-          .executedAt(Instant.now())
-          .execResult(result)
-          .build();
-
-      recordRepository.save(record);
+    if (!isActive) {
+      response = JobExecStatus.CANCELLED;
     }
 
+    response = dispatcher.dispatch(webhook);
+
+    JobExecRecord result = JobExecRecord.builder()
+        .jobId(id)
+        .executedAt(now)
+        .execResult(response)
+        .build();
+
+    recordRepository.save(result);
   }
 
 }

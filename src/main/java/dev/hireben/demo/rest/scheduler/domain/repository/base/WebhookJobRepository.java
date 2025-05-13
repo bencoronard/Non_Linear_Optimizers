@@ -11,4 +11,6 @@ public interface WebhookJobRepository<T extends WebhookJob> {
 
   Optional<T> findById(Long id);
 
+  Optional<T> findByIdNoContent(Long id);
+
 }
