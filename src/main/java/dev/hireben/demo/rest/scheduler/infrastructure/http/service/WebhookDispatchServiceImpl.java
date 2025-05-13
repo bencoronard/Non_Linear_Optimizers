@@ -15,8 +15,8 @@ import org.springframework.web.client.RestClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import dev.hireben.demo.rest.scheduler.domain.entity.JobExecResult;
-import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
+import dev.hireben.demo.rest.scheduler.domain.model.JobExecResult;
+import dev.hireben.demo.rest.scheduler.domain.model.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.service.WebhookDispatchService;
 import dev.hireben.demo.rest.scheduler.domain.utility.JobExecStatus;
 import lombok.AccessLevel;

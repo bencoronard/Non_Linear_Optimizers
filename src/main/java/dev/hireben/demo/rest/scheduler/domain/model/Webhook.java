@@ -1,4 +1,4 @@
-package dev.hireben.demo.rest.scheduler.domain.entity;
+package dev.hireben.demo.rest.scheduler.domain.model;
 
 import java.util.Map;
 
@@ -13,7 +13,6 @@ public class Webhook {
   // Fields
   // ---------------------------------------------------------------------------//
 
-  private Long id;
   private String callbackUrl;
   private Map<String, String> headers;
   private byte[] payload;

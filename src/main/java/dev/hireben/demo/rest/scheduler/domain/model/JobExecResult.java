@@ -1,4 +1,4 @@
-package dev.hireben.demo.rest.scheduler.domain.entity;
+package dev.hireben.demo.rest.scheduler.domain.model;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -3,7 +3,7 @@ package dev.hireben.demo.rest.scheduler.domain.entity.base;
 import java.time.Instant;
 
 import dev.hireben.demo.rest.scheduler.domain.entity.JobExecRecord;
-import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
+import dev.hireben.demo.rest.scheduler.domain.model.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.repository.JobExecRecordRepository;
 import dev.hireben.demo.rest.scheduler.domain.service.WebhookDispatchService;
 import dev.hireben.demo.rest.scheduler.domain.utility.JobExecStatus;

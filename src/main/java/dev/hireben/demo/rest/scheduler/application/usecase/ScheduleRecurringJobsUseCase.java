@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import dev.hireben.demo.rest.scheduler.application.dto.ScheduleRecurringJobDTO;
 import dev.hireben.demo.rest.scheduler.domain.entity.RecurringJob;
-import dev.hireben.demo.rest.scheduler.domain.entity.Webhook;
+import dev.hireben.demo.rest.scheduler.domain.model.Webhook;
 import dev.hireben.demo.rest.scheduler.domain.repository.RecurringJobRepository;
 import lombok.RequiredArgsConstructor;
 
