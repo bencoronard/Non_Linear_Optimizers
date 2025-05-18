@@ -52,8 +52,8 @@ public abstract class WebhookJobJpaEntity {
   @Column(name = "callback_url", nullable = false)
   private String callbackUrl;
 
-  @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-  @JoinColumn(name = "id")
-  private WebhookContentJpaEntity webhookData;
+  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+  @JoinColumn(name = "content_id", nullable = false)
+  private WebhookContentJpaEntity webhookContent;
 
 }
